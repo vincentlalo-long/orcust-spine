@@ -5,21 +5,21 @@
 
 [![Python](https://img.shields.io/badge/Python-3.11%2B-blue.svg)](https://www.python.org/)
 [![Spine](https://img.shields.io/badge/Spine-3.7%20%7C%203.8-orange.svg)](http://esotericsoftware.com/)
-[![Ecosystem](https://img.shields.io/badge/Ecosystem-Orcust%20Companion-purple.svg)](https://github.com/vincentlalo-long)
+[![Ecosystem](https://img.shields.io/badge/Ecosystem-orcust--companiond-purple.svg)](https://github.com/vincentlalo-long/orcust-companiond)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 ---
 
 ## 📖 Overview
 
-**`orcust-spine`** is the motion and character animation engine within the **Orcust** desktop assistant ecosystem (paired directly with [`orcust-companion`](https://github.com/vincentlalo-long)).
+**`orcust-spine`** is the motion and character animation engine within the **Orcust** desktop assistant ecosystem, designed to work in tandem with [`orcust-companiond`](https://github.com/vincentlalo-long/orcust-companiond).
 
-While `orcust-companion` handles the cognitive core (LLM, STT, TTS, and desktop runtime daemon), `orcust-spine` solves the visual pipeline: **turning flat 2D character illustrations (e.g., Makise Kurisu) into fluid, interactive, 60 FPS animated avatars**.
+While `orcust-companiond` serves as the cognitive core and runtime daemon (LLM, STT, TTS, and desktop UI), `orcust-spine` focuses on the visual and motion pipeline: **turning flat 2D character illustrations into fluid, interactive, 60 FPS animated avatars**.
 
 ```
                 ┌────────────────────────────────────────┐
                 │          Static 2D Character           │
-                │        (e.g., Makise Kurisu)           │
+                │             (Single Image)             │
                 └──────────────────┬─────────────────────┘
                                    │
                                    ▼
@@ -34,7 +34,7 @@ While `orcust-companion` handles the cognitive core (LLM, STT, TTS, and desktop 
                                    │
                                    ▼
                 ┌────────────────────────────────────────┐
-                │            orcust-companion            │
+                │           orcust-companiond            │
                 │     (Tauri / Linux Desktop Daemon)     │
                 │  - Idle Breathing Loop                 │
                 │  - Responsive Mouth Talk (TTS lipsync) │
@@ -46,79 +46,10 @@ While `orcust-companion` handles the cognitive core (LLM, STT, TTS, and desktop 
 
 ## ✨ Key Features
 
-- 🧩 **Spine Asset Extractor**: High-speed extraction and decryption of Spine binary skeletons (`.skel`), texture maps (`.atlas`), and high-res atlas textures (`.png`) from Unity AssetBundles.
+- 🧩 **Spine Asset Extractor**: Extract and decrypt Spine binary skeletons (`.skel`), texture maps (`.atlas`), and high-res atlas textures (`.png`) from Unity AssetBundles (supports Spine 3.7/3.8 titles such as *CounterSide*).
 - ✂️ **Semantic Layer Segmentation**: Automated separation of character artwork into independent anatomical layers (hair, eyes, face, torso, clothes) with background occlusion inpainting.
 - 🦴 **Motion Retargeting**: Map keyframe trajectories (`IDLE`, `TOUCH`, `mouth_talk`) from reference game skeletons onto custom target characters.
 - 🎬 **Companion-Ready WebM Exporter**: Output ultra-lightweight, hardware-accelerated VP9 transparent WebM loops (< 2% CPU overhead on desktop).
-
----
-
-## 📁 Repository Structure
-
-```text
-orcust-spine/
-├── .gitignore               # Strict ignore rules for game assets and model weights
-├── README.md                # Project documentation
-├── requirements.txt         # Core dependencies (UnityPy, Pillow, etc.)
-├── config.example.yaml      # Configuration template for asset and output paths
-│
-├── modules/
-│   ├── extractor/           # Asset extraction & crypto stream handlers
-│   │   ├── decrypt.py       # Header decryption & crypto routines
-│   │   └── spine_extract.py # Spine bundle parser (.skel, .atlas, .png)
-│   │
-│   ├── segmenter/           # 2D Layer decomposition & inpainting
-│   │   └── layer_split.py   # Anime segmentation wrapper
-│   │
-│   ├── rigger/              # Skeleton generation & animation retargeting
-│   │   └── retarget.py      # Transfer bone motions from template
-│   │
-│   └── viewer/              # Local preview server & video recorder
-│       ├── server.py        # Lightweight local asset server
-│       └── web/             # PixiJS + Spine 3.7/3.8 HTML5 runtime
-│
-├── extract.py               # CLI tool to extract reference Spine assets
-└── pipeline.py              # End-to-end execution pipeline
-```
-
----
-
-## 🚀 Quick Start
-
-### 1. Prerequisites
-- **Python 3.11+**
-- **NVIDIA GPU** with CUDA support (Recommended: RTX 3060/4060 or higher with 8GB VRAM)
-- Optional for `.jar` tools: Java Runtime Environment 17+
-
-### 2. Installation
-```bash
-# Clone repository
-git clone https://github.com/vincentlalo-long/orcust-spine.git
-cd orcust-spine
-
-# Create and activate virtual environment
-python -m venv .venv
-# Windows:
-.venv\Scripts\activate
-# Linux:
-source .venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-### 3. Extracting Reference Motion
-Extract high-resolution character Spine assets from game bundles:
-```bash
-# Extract character by name keyword
-python extract.py --name "mina"
-
-# Output will be located in:
-# outputs/spine_mina/
-# ├── UNIT_ILLUST_C_YOO_MI_NA.skel
-# ├── UNIT_ILLUST_C_YOO_MI_NA.atlas
-# └── UNIT_ILLUST_C_YOO_MI_NA.png
-```
 
 ---
 
@@ -142,5 +73,5 @@ This repository is developed strictly for **educational, non-commercial, and ope
 
 ## 📜 License
 
-Distributed under the [MIT License](LICENSE).
-Part of the **Orcust** project suite.
+Distributed under the [MIT License](LICENSE).  
+Part of the **Orcust** project suite, paired with [`orcust-companiond`](https://github.com/vincentlalo-long/orcust-companiond).
