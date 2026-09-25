@@ -1,0 +1,69 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environments & Dependencies
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+node_modules/
+dist/
+build/
+
+# Local Configuration & Secrets
+.env
+.env.local
+config.local.yaml
+config.local.json
+
+# Model Checkpoints & Large Weights
+*.pth
+*.pt
+*.bin
+*.onnx
+*.safetensors
+models/checkpoints/
+weights/
+
+# Raw Game Assets & Data (DO NOT COMMIT)
+*.asset
+*.bundle
+*.unity3d
+*.resS
+*.skel
+*.atlas
+*.pcap
+*.dec
+gameplay-jsons/
+StreamingAssets/
+Assetbundles/
+
+# Output directories & Media Artifacts
+output/
+outputs/
+exports/
+extracted/
+data/input/
+data/output/
+*.mp4
+*.webm
+*.avi
+*.gif
+# Allow documentation images in docs/
+!docs/**/*.png
+!docs/**/*.jpg
+!docs/**/*.svg
+
+# Editor & OS Artifacts
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
