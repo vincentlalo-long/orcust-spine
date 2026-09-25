@@ -46,10 +46,40 @@ While `orcust-companiond` serves as the cognitive core and runtime daemon (LLM, 
 
 ## ✨ Key Features
 
-- 🧩 **Spine Asset Extractor**: Extract and decrypt Spine binary skeletons (`.skel`), texture maps (`.atlas`), and high-res atlas textures (`.png`) from Unity AssetBundles (supports Spine 3.7/3.8 titles such as *CounterSide*).
+- 🧩 **Modular Spine Extractor**: An extensible extraction architecture designed for 2D game assets. The pipeline initially implements full decryption and extraction for *CounterSide* (Spine 3.7) as the primary reference database (providing 1,300+ character and skin motion templates), with support for additional titles planned.
 - ✂️ **Semantic Layer Segmentation**: Automated separation of character artwork into independent anatomical layers (hair, eyes, face, torso, clothes) with background occlusion inpainting.
 - 🦴 **Motion Retargeting**: Map keyframe trajectories (`IDLE`, `TOUCH`, `mouth_talk`) from reference game skeletons onto custom target characters.
 - 🎬 **Companion-Ready WebM Exporter**: Output ultra-lightweight, hardware-accelerated VP9 transparent WebM loops (< 2% CPU overhead on desktop).
+
+---
+
+## 🚀 Quick Start (Reference Extraction: CounterSide)
+
+### 1. Configuration
+Copy `.env.example` to `.env` and set your CounterSide `StreamingAssets` path:
+```bash
+# Windows (PowerShell / CMD)
+copy .env.example .env
+
+# Linux / macOS
+cp .env.example .env
+```
+
+Edit `.env`:
+```env
+CS_STREAMING_ASSETS_DIR=D:\Game\CounterSide\Game\CounterSide\Data\StreamingAssets
+OUTPUT_DIR=outputs
+```
+
+### 2. Search & Extract Characters
+Use the CLI to search character bundles or extract full Spine assets:
+```bash
+# List matching character bundles without extracting
+python extract.py --name "c_yoo_mi_na" --list
+
+# Extract character Spine assets (creates .skel, .atlas, .png)
+python extract.py --name "illust_nkm_unit_c_yoo_mi_na.asset"
+```
 
 ---
 
@@ -67,7 +97,7 @@ While `orcust-companiond` serves as the cognitive core and runtime daemon (LLM, 
 
 This repository is developed strictly for **educational, non-commercial, and open-source research purposes**.
 - **No copyrighted game assets, binary textures, or audio clips are hosted or distributed in this repository.**
-- All third-party game assets belong to their respective copyright holders. Users are solely responsible for supplying their own legally acquired assets.
+- All third-party game assets belong to their respective copyright holders (Studiobside Co., Ltd. / Nexon). Users are solely responsible for supplying their own legally acquired assets.
 
 ---
 
