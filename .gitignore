@@ -54,10 +54,7 @@ data/output/
 *.webm
 *.avi
 *.gif
-# Allow documentation images in docs/
-!docs/**/*.png
-!docs/**/*.jpg
-!docs/**/*.svg
+docs/
 
 # Editor & OS Artifacts
 .vscode/
