@@ -67,6 +67,12 @@ def extract_spine_bundle(
             except Exception as e:
                 print(f"Warning: Failed to save texture {data.m_Name}: {e}")
 
+    if not extracted_files and target_folder.exists():
+        try:
+            target_folder.rmdir()
+        except OSError:
+            pass
+
     return {
         "bundle": bundle_path.name,
         "character": folder_name,

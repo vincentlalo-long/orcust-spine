@@ -14,6 +14,8 @@ venv.bak/
 node_modules/
 dist/
 build/
+tools/
+*.exe
 
 # Local Configuration & Secrets
 .env
@@ -54,6 +56,7 @@ data/output/
 *.webm
 *.avi
 *.gif
+*.zip
 docs/
 
 # Editor & OS Artifacts
